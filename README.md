@@ -169,22 +169,52 @@ dotnet test
 # Screenshots
 
 ## Login Page
-(Add screenshot)
+
+![Login](Screenshots/login.png)
+
+---
 
 ## Dashboard
-(Add screenshot)
+
+![Dashboard](Screenshots/dashboard.png)
+
+---
 
 ## Supplier Management
-(Add screenshot)
+
+![Supplier](Screenshots/supplier.png)
+
+---
 
 ## Wafer Management
-(Add screenshot)
+
+![Wafer](Screenshots/wafer.png)
+
+---
+
+## Carrier Management
+
+![Carrier](Screenshots/carrier.png)
+
+---
 
 ## Lot Management
-(Add screenshot)
+
+![Lot](Screenshots/lot.png)
+
+---
 
 ## Process Locations
-(Add screenshot)
+
+![Process](Screenshots/process.png)
+
+---
+
+## Logs
+
+![Logs](Screenshots/log.png)
+
+---
 
 ---
 
