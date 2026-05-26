@@ -121,7 +121,7 @@ Tables:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/LTS.git
+https://github.com/pranavmohan-eternix/LotTrackingSystem.git
 ```
 
 ---
