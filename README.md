@@ -201,6 +201,3 @@ This project was developed as a semiconductor manufacturing workflow training si
 
 ---
 
-# Author
-
-Pranav Mohan
