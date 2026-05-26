@@ -1,0 +1,623 @@
+﻿<Page x:Class="LTS.UI.Views.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F1F5F9">
+
+    <Page.Resources>
+
+        <!-- SHARED DATAGRID HEADER STYLE -->
+        <Style x:Key="HeaderStyle"
+               TargetType="DataGridColumnHeader">
+            <Setter Property="Background"
+                    Value="#2563EB"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="FontSize"
+                    Value="13"/>
+            <Setter Property="Padding"
+                    Value="12,10"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left"/>
+        </Style>
+
+        <!-- SHARED DATAGRID CELL STYLE -->
+        <Style x:Key="CellStyle"
+               TargetType="DataGridCell">
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="FocusVisualStyle"
+                    Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Padding="12,0"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- SHARED DATAGRID ROW STYLE -->
+        <Style x:Key="RowStyle"
+               TargetType="DataGridRow">
+            <Setter Property="Height"
+                    Value="42"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="#EFF6FF"/>
+                </Trigger>
+                <Trigger Property="AlternationIndex"
+                         Value="1">
+                    <Setter Property="Background"
+                            Value="#F8FAFC"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+
+        <StackPanel Margin="24,20,24,28">
+
+            <!-- ══════════════════════════ -->
+            <!--  SUMMARY CARDS            -->
+            <!-- ══════════════════════════ -->
+
+            <UniformGrid Columns="3"
+                         Margin="0,0,0,24">
+
+                <!-- AVAILABLE WAFERS -->
+                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="22,18"
+                        Margin="0,0,10,0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="1"
+                                          Color="#CBD5E1"
+                                          Opacity="0.45"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <Border Background="#EFF6FF"
+                                    CornerRadius="8"
+                                    Width="40"
+                                    Height="40"
+                                    DockPanel.Dock="Right">
+                                <TextBlock Text="◈"
+                                           FontSize="18"
+                                           Foreground="#2563EB"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Available Wafers"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#64748B"
+                                       VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding AvailableWafers}"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="#1E293B"
+                                   Margin="0,0,0,8"/>
+                        <Border Background="#EFF6FF"
+                                CornerRadius="4"
+                                Padding="8,3"
+                                HorizontalAlignment="Left">
+                            <TextBlock Text="Unassigned wafers"
+                                       FontSize="11"
+                                       Foreground="#2563EB"
+                                       FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ACTIVE LOTS -->
+                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="22,18"
+                        Margin="5,0,5,0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="1"
+                                          Color="#CBD5E1"
+                                          Opacity="0.45"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <Border Background="#F0FDF4"
+                                    CornerRadius="8"
+                                    Width="40"
+                                    Height="40"
+                                    DockPanel.Dock="Right">
+                                <TextBlock Text="▶"
+                                           FontSize="16"
+                                           Foreground="#16A34A"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Active Lots"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#64748B"
+                                       VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding ActiveLots}"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="#1E293B"
+                                   Margin="0,0,0,8"/>
+                        <Border Background="#F0FDF4"
+                                CornerRadius="4"
+                                Padding="8,3"
+                                HorizontalAlignment="Left">
+                            <TextBlock Text="Currently in progress"
+                                       FontSize="11"
+                                       Foreground="#16A34A"
+                                       FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- FREE LOCATIONS -->
+                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="22,18"
+                        Margin="10,0,0,0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="1"
+                                          Color="#CBD5E1"
+                                          Opacity="0.45"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <Border Background="#FFF7ED"
+                                    CornerRadius="8"
+                                    Width="40"
+                                    Height="40"
+                                    DockPanel.Dock="Right">
+                                <TextBlock Text="⊡"
+                                           FontSize="18"
+                                           Foreground="#EA580C"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Locations Free"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#64748B"
+                                       VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <TextBlock Text="{Binding FreeLocations}"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="#1E293B"
+                                   Margin="0,0,0,8"/>
+                        <Border Background="#FFF7ED"
+                                CornerRadius="4"
+                                Padding="8,3"
+                                HorizontalAlignment="Left">
+                            <TextBlock Text="Open process stations"
+                                       FontSize="11"
+                                       Foreground="#EA580C"
+                                       FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+            </UniformGrid>
+
+            <!-- ══════════════════════════ -->
+            <!--  PROCESS LOCATIONS        -->
+            <!-- ══════════════════════════ -->
+
+            <TextBlock Text="Process Locations"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="#1E293B"
+                       Margin="0,0,0,12"/>
+
+            <ItemsControl ItemsSource="{Binding Locations}"
+                          Margin="0,0,0,24">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Margin="0,0,10,10">
+
+                            <!-- AVAILABLE CARD (shown when not Occupied) -->
+                            <Border x:Name="AvailableCard"
+                                    Background="White"
+                                    CornerRadius="10"
+                                    Padding="16,14"
+                                    Visibility="Visible">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="8"
+                                                      ShadowDepth="1"
+                                                      Color="#CBD5E1"
+                                                      Opacity="0.4"/>
+                                </Border.Effect>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding StationName}"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Foreground="#1E293B"
+                                               Margin="0,0,0,6"/>
+                                    <Border Background="#F0FDF4"
+                                            CornerRadius="5"
+                                            Padding="8,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="{Binding Status}"
+                                                   FontSize="11"
+                                                   FontWeight="Bold"
+                                                   Foreground="#16A34A"/>
+                                    </Border>
+                                    <Separator Background="#E2E8F0" Margin="0,0,0,10"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="6"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Lot:" Grid.Row="0" Grid.Column="0"
+                                                   FontSize="12" Foreground="#94A3B8" Margin="0,0,8,0"/>
+                                        <TextBlock Text="{Binding CurrentLot}" Grid.Row="0" Grid.Column="1"
+                                                   FontSize="12" FontWeight="SemiBold" Foreground="#1E293B"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock Text="Wafers:" Grid.Row="2" Grid.Column="0"
+                                                   FontSize="12" Foreground="#94A3B8" Margin="0,0,8,0"/>
+                                        <TextBlock Text="{Binding WaferCount}" Grid.Row="2" Grid.Column="1"
+                                                   FontSize="12" FontWeight="SemiBold" Foreground="#1E293B"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- OCCUPIED CARD (shown + animated when Occupied) -->
+                            <Border x:Name="OccupiedCard"
+                                    Background="#FFF7ED"
+                                    CornerRadius="10"
+                                    Padding="16,14"
+                                    BorderThickness="2"
+                                    Visibility="Collapsed">
+                                <Border.BorderBrush>
+                                    <SolidColorBrush x:Name="OccupiedBorderBrush"
+                                                     Color="#F97316"/>
+                                </Border.BorderBrush>
+                                <Border.Effect>
+                                    <DropShadowEffect x:Name="OccupiedShadow"
+                                                      BlurRadius="8"
+                                                      ShadowDepth="0"
+                                                      Color="#F97316"
+                                                      Opacity="0.5"/>
+                                </Border.Effect>
+                                <Border.Triggers>
+                                    <EventTrigger RoutedEvent="Border.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <!-- PULSE BORDER COLOR -->
+                                                <ColorAnimation
+                                                    Storyboard.TargetName="OccupiedBorderBrush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#F97316" To="#FED7AA"
+                                                    Duration="0:0:1"
+                                                    AutoReverse="True"/>
+                                                <!-- PULSE SHADOW SIZE -->
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="OccupiedShadow"
+                                                    Storyboard.TargetProperty="BlurRadius"
+                                                    From="6" To="20"
+                                                    Duration="0:0:1"
+                                                    AutoReverse="True"/>
+                                                <!-- PULSE SHADOW OPACITY -->
+                                                <DoubleAnimation
+                                                    Storyboard.TargetName="OccupiedShadow"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    From="0.6" To="0.15"
+                                                    Duration="0:0:1"
+                                                    AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Border.Triggers>
+
+                                <StackPanel>
+                                    <!-- STATION NAME + PULSE DOT -->
+                                    <DockPanel Margin="0,0,0,6">
+                                        <Ellipse x:Name="PulseDot"
+                                                 Width="9" Height="9"
+                                                 Fill="#F97316"
+                                                 VerticalAlignment="Center"
+                                                 DockPanel.Dock="Right">
+                                            <Ellipse.Triggers>
+                                                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                                                    <BeginStoryboard>
+                                                        <Storyboard RepeatBehavior="Forever">
+                                                            <DoubleAnimation
+                                                                Storyboard.TargetProperty="Opacity"
+                                                                From="1" To="0.1"
+                                                                Duration="0:0:0.8"
+                                                                AutoReverse="True"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Ellipse.Triggers>
+                                        </Ellipse>
+                                        <TextBlock Text="{Binding StationName}"
+                                                   FontSize="20"
+                                                   FontWeight="Bold"
+                                                   Foreground="#1E293B"/>
+                                    </DockPanel>
+
+                                    <!-- OCCUPIED BADGE -->
+                                    <Border Background="#FFEDD5"
+                                            CornerRadius="5"
+                                            Padding="8,3"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,10">
+                                        <TextBlock Text="{Binding Status}"
+                                                   FontSize="11"
+                                                   FontWeight="Bold"
+                                                   Foreground="#EA580C"/>
+                                    </Border>
+
+                                    <Separator Background="#FED7AA" Margin="0,0,0,10"/>
+
+                                    <!-- LOT + WAFER INFO -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="6"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Lot:" Grid.Row="0" Grid.Column="0"
+                                                   FontSize="12" Foreground="#94A3B8" Margin="0,0,8,0"/>
+                                        <TextBlock Text="{Binding CurrentLot}" Grid.Row="0" Grid.Column="1"
+                                                   FontSize="12" FontWeight="SemiBold" Foreground="#1E293B"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock Text="Wafers:" Grid.Row="2" Grid.Column="0"
+                                                   FontSize="12" Foreground="#94A3B8" Margin="0,0,8,0"/>
+                                        <TextBlock Text="{Binding WaferCount}" Grid.Row="2" Grid.Column="1"
+                                                   FontSize="12" FontWeight="SemiBold" Foreground="#1E293B"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                        </Grid>
+
+                        <!-- SWAP WHICH CARD IS VISIBLE -->
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Status}" Value="Occupied">
+                                <Setter TargetName="AvailableCard" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="OccupiedCard"  Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- ══════════════════════════════════════ -->
+            <!--  BOTTOM: LIVE LOT TABLE + EVENT LOGS  -->
+            <!-- ══════════════════════════════════════ -->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.7*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LIVE LOT STATUS TABLE -->
+                <Border Grid.Column="0"
+                        Background="White"
+                        CornerRadius="12"
+                        Padding="20">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="1"
+                                          Color="#CBD5E1"
+                                          Opacity="0.45"/>
+                    </Border.Effect>
+                    <StackPanel>
+
+                        <TextBlock Text="Live Lot Status"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#1E293B"
+                                   Margin="0,0,0,14"/>
+
+                        <DataGrid ItemsSource="{Binding Lots}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserReorderColumns="False"
+                                  IsReadOnly="True"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto"
+                                  BorderThickness="0"
+                                  Height="300"
+                                  AlternationCount="2"
+                                  ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                                  CellStyle="{StaticResource CellStyle}"
+                                  RowStyle="{StaticResource RowStyle}">
+
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Lot"
+                                                    Binding="{Binding LotCode}"
+                                                    Width="*"/>
+
+                                <DataGridTextColumn Header="Status"
+                                                    Binding="{Binding Status}"
+                                                    Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontWeight"
+                                                    Value="SemiBold"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="Text"
+                                                         Value="InProgress">
+                                                    <Setter Property="Foreground"
+                                                            Value="#2563EB"/>
+                                                </Trigger>
+                                                <Trigger Property="Text"
+                                                         Value="Completed">
+                                                    <Setter Property="Foreground"
+                                                            Value="#16A34A"/>
+                                                </Trigger>
+                                                <Trigger Property="Text"
+                                                         Value="Queued">
+                                                    <Setter Property="Foreground"
+                                                            Value="#EA580C"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Location"
+                                                    Binding="{Binding CurrentStation}"
+                                                    Width="90"/>
+
+                                <DataGridTextColumn Header="Wafers"
+                                                    Binding="{Binding WaferCount}"
+                                                    Width="90"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- EVENT LOGS -->
+                <Border Grid.Column="2"
+                        Background="White"
+                        CornerRadius="12"
+                        Padding="20">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="1"
+                                          Color="#CBD5E1"
+                                          Opacity="0.45"/>
+                    </Border.Effect>
+                    <StackPanel>
+
+                        <TextBlock Text="Event Logs"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#1E293B"
+                                   Margin="0,0,0,14"/>
+
+                        <ItemsControl ItemsSource="{Binding RecentLogs}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#F1F5F9"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="48"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- LEVEL BADGE -->
+                                            <Border Grid.Column="0"
+                                                    CornerRadius="4"
+                                                    Padding="5,3"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Left">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Background"
+                                                                Value="#EFF6FF"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Level}"
+                                                                         Value="WARN">
+                                                                <Setter Property="Background"
+                                                                        Value="#FFF7ED"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Level}"
+                                                                         Value="ERROR">
+                                                                <Setter Property="Background"
+                                                                        Value="#FEF2F2"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <TextBlock Text="{Binding Level}"
+                                                           FontSize="10"
+                                                           FontWeight="Bold">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Foreground"
+                                                                    Value="#2563EB"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Level}"
+                                                                             Value="WARN">
+                                                                    <Setter Property="Foreground"
+                                                                            Value="#EA580C"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Level}"
+                                                                             Value="ERROR">
+                                                                    <Setter Property="Foreground"
+                                                                            Value="#DC2626"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Border>
+
+                                            <!-- MESSAGE -->
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Message}"
+                                                       FontSize="12"
+                                                       Foreground="#475569"
+                                                       TextWrapping="Wrap"
+                                                       VerticalAlignment="Center"/>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Page>

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="LTS.Application/LTS.Application.csproj" />
+  <Project Path="LTS.Common/LTS.Common.csproj" />
+  <Project Path="LTS.Data/LTS.Data.csproj" />
+  <Project Path="LTS.Tests/LTS.Tests.csproj" Id="260bca3d-87bf-41d8-8315-e408b1f8a422" />
+  <Project Path="LTS.UI/LTS.UI.csproj" />
+</Solution>

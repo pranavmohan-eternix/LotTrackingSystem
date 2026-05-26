@@ -1,0 +1,325 @@
+﻿<Page x:Class="LTS.UI.Views.ProcessLocationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:LTS.UI.Controls"
+      Background="#F1F5F9">
+
+    <Page.Resources>
+
+        <!-- HEADER STYLE -->
+        <Style x:Key="HeaderStyle"
+               TargetType="DataGridColumnHeader">
+
+            <Setter Property="Background"
+                    Value="#2563EB"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="Height"
+                    Value="46"/>
+
+        </Style>
+
+        <!-- CELL STYLE -->
+        <Style x:Key="CellStyle"
+               TargetType="DataGridCell">
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{x:Null}"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="DataGridCell">
+
+                        <Border Padding="12,0"
+                                Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <!-- ROW STYLE -->
+        <Style x:Key="RowStyle"
+               TargetType="DataGridRow">
+
+            <Setter Property="Height"
+                    Value="44"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="#EFF6FF"/>
+
+                </Trigger>
+
+                <Trigger Property="AlternationIndex"
+                         Value="1">
+
+                    <Setter Property="Background"
+                            Value="#F8FAFC"/>
+
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+
+        <!-- TEXT STYLE -->
+        <Style x:Key="CenterTextStyle"
+               TargetType="TextBlock">
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="TextAlignment"
+                    Value="Center"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="Foreground"
+                    Value="#374151"/>
+
+        </Style>
+
+    </Page.Resources>
+
+    <!-- PAGE SCROLL -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+
+        <StackPanel>
+
+            <!-- PAGE HEADER -->
+            <StackPanel Margin="24,20,24,0">
+
+                <TextBlock Text="Process Locations"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="#1E293B"/>
+
+                <TextBlock Text="10 Stations — Auto Initialized"
+                           FontSize="13"
+                           Foreground="#64748B"
+                           Margin="0,4,0,22"/>
+
+            </StackPanel>
+
+            <!-- TOPOLOGY SECTION -->
+            <Border Height="540"
+                    Margin="24,0,24,28">
+
+                <Grid Width="820"
+                      Height="540">
+
+                    <!-- STATION LAYER -->
+                    <Canvas x:Name="StationCanvas"
+                            Width="820"
+                            Height="540">
+
+                        <!-- TOP ROW -->
+
+                        <!-- S1 -->
+                        <controls:StationCard
+                            x:Name="S1"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="10"
+                            Canvas.Top="60"
+                            StationName="S1"
+                            Status="Occupied"
+                            CurrentLot="LOT-1001"
+                            WaferCount="25"/>
+
+                        <!-- S2 -->
+                        <controls:StationCard
+                            x:Name="S2"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="170"
+                            Canvas.Top="60"
+                            StationName="S2"
+                            Status="Available"/>
+
+                        <!-- S3 -->
+                        <controls:StationCard
+                            x:Name="S3"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="330"
+                            Canvas.Top="60"
+                            StationName="S3"
+                            Status="Available"/>
+
+                        <!-- S4 -->
+                        <controls:StationCard
+                            x:Name="S4"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="490"
+                            Canvas.Top="60"
+                            StationName="S4"
+                            Status="Available"/>
+
+                        <!-- S5 -->
+                        <controls:StationCard
+                            x:Name="S5"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="650"
+                            Canvas.Top="60"
+                            StationName="S5"
+                            Status="Available"/>
+
+                        <!-- DOWN CONNECTOR -->
+                        <Border Width="6"
+                                Height="90"
+                                Background="#CBD5E1"
+                                CornerRadius="4"
+                                Canvas.Left="720"
+                                Canvas.Top="200"/>
+
+                        <!-- BOTTOM ROW -->
+
+                        <!-- S10 -->
+                        <controls:StationCard
+                            x:Name="S10"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="10"
+                            Canvas.Top="310"
+                            StationName="S10"
+                            Status="Available"/>
+
+                        <!-- S9 -->
+                        <controls:StationCard
+                            x:Name="S9"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="170"
+                            Canvas.Top="310"
+                            StationName="S9"
+                            Status="Available"/>
+
+                        <!-- S8 -->
+                        <controls:StationCard
+                            x:Name="S8"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="330"
+                            Canvas.Top="310"
+                            StationName="S8"
+                            Status="Available"/>
+
+                        <!-- S7 -->
+                        <controls:StationCard
+                            x:Name="S7"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="490"
+                            Canvas.Top="310"
+                            StationName="S7"
+                            Status="Available"/>
+
+                        <!-- S6 -->
+                        <controls:StationCard
+                            x:Name="S6"
+                            Width="145"
+                            Height="120"
+                            Canvas.Left="650"
+                            Canvas.Top="310"
+                            StationName="S6"
+                            Status="Available"/>
+
+                    </Canvas>
+
+                    <!-- ANIMATION OVERLAY -->
+                    <Canvas x:Name="AnimationCanvas"
+                            Width="820"
+                            Height="540"
+                            IsHitTestVisible="False"
+                            Panel.ZIndex="999"/>
+
+                </Grid>
+
+            </Border>
+
+            <!-- TABLE SECTION -->
+            <StackPanel Margin="24,0,24,24">
+
+                <TextBlock Text="Stations Overview"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#1E293B"
+                           Margin="0,0,0,12"/>
+
+                <Border Background="White"
+                        CornerRadius="12"
+                        BorderBrush="#E2E8F0"
+                        BorderThickness="1">
+
+                    <DataGrid ItemsSource="{Binding Locations}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserResizeColumns="False"
+                              CanUserReorderColumns="False"
+                              IsReadOnly="True"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal"
+                              BorderThickness="0"
+                              AlternationCount="2"
+                              Background="White"
+                              ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                              CellStyle="{StaticResource CellStyle}"
+                              RowStyle="{StaticResource RowStyle}">
+
+                    </DataGrid>
+
+                </Border>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Page>
